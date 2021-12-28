@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <meta name="theme-color" content="#1d1e2b" />
+  <meta name="description"
+    content="Watch Ethereum burn ETH in real-time, per block, as an ultra-sound money, creating a sense of deflation. Due to the new protocol changes, EIP-1559." />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/app-icon.png" />
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <title>Watch The Burn: EIP-1559 Real-Time ETH Burn Visualization for Ethereum</title>
+  <style>
+    :root {
+      --orange: rgb(255, 106, 0);
+      --red: rgb(255, 34, 0);
+      --yellow: rgb(255, 200, 0);
+      --blue: rgb(0, 55, 255);
+    }
+
+    html,
+    body,
+    #root {
+      height: 100%;
+      margin: 0;
+    }
+
+    #raw-loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: sans-serif;
+    }
+
+    #raw-text {
+      visibility: hidden;
+      margin-top: 40px;
+      height: 24px;
+    }
+
+    .firepit {
+      position: relative;
+      font-size: 100px;
+    }
+
+    .firepit-fire {
+      position: relative;
+      bottom: 0;
+      width: 1em;
+      height: 1em;
+    }
+
+    .firepit-flame {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      opacity: .9;
+      width: 1em;
+      height: 1em;
+      border-bottom-right-radius: 0.7em;
+      border-bottom-left-radius: 0.7em;
+      border-top-left-radius: 0.7em;
+      transform: rotate(-45deg) skew(-10deg, -10deg);
+      background-color: var(--red);
+      background-image: linear-gradient(to top right, fade-out(var(--red), .1), fade-out(var(--orange), .3));
+      z-index: 1;
+    }
+
+    .firepit-animate .firepit-flame {
+      animation-iteration-count: infinite;
+      animation-fill-mode: forwards;
+      animation-name: burn-left;
+      animation-duration: 300ms;
+    }
+
+    .firepit-animate .firepit-flame:nth-of-type(2n) {
+      animation-name: burn-right;
+      animation-duration: 400ms;
+    }
+
+    .firepit-flame:nth-of-type(2) {
+      height: 0.8em;
+      width: 0.8em;
+      left: 0.1em;
+      background-color: var(--orange);
+      background-image: linear-gradient(to top right, rgba(var(--orange), .9), rgba(var(--yellow), .9));
+      z-index: 2;
+    }
+
+    .firepit-flame:nth-of-type(3) {
+      height: 0.5em;
+      width: 0.5em;
+      left: 0.25em;
+      background-image: linear-gradient(to top right, var(--yellow), white);
+      z-index: 3;
+    }
+
+    .firepit-flame:nth-of-type(4) {
+      height: 0.3em;
+      width: 0.3em;
+      left: 0.35em;
+      background-color: white;
+      background-image: linear-gradient(to top right, rgba(white, .7), rgba(var(--blue), .1));
+      opacity: 1;
+      z-index: 4;
+    }
+
+    @keyframes burn-left {
+
+      0%,
+      100% {
+        transform: rotate(-45deg) skew(-10deg, -10deg) scale(1);
+      }
+
+      30%,
+      60% {
+        transform: rotate(-44deg) skew(-12deg, -12deg) scale(1.01);
+      }
+    }
+
+    @keyframes burn-right {
+
+      0%,
+      100% {
+        transform: rotate(-45deg) skew(-10deg, -10deg) scale(1);
+      }
+
+      30%,
+      60% {
+        transform: rotate(-46deg) skew(-6deg, -6deg) scale(1.01);
+      }
+    }
+
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: #858585 transparent;
+    }
+
+    *::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    *::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    *::-webkit-scrollbar-corner {
+      background: none;
+    }
+
+    *::-webkit-scrollbar-thumb {
+      border-radius: 4px;
+      background: #858585;
+    }
+
+    *::-webkit-scrollbar-track {
+      opacity: 0;
+    }
+
+    *:focus {
+      box-shadow: none !important;
+    }
+
+    .chakra-ui-dark {
+      background-color: #1D1E2B;
+      color: white;
+    }
+
+    .chakra-ui-light {
+      background-color: #fdfdfd;
+      color: #333;
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    // To eliminate flashing a bit more.
+    const storedColorMode = localStorage['chakra-ui-color-mode'] || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.body.classList.add(storedColorMode === 'dark' ? 'chakra-ui-dark' : 'chakra-ui-light');
+
+    // Clarity
+    if (%REACT_APP_ANALYTICS_ID%) {
+      (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "8biyq6zmts");
+    }
+  </script>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root">
+    <div id="raw-loader">
+      <svg height="150" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15.5 31a9.5 9.5 0 1 0 0-19 9.5 9.5 0 0 0 0 19Z" fill="url(#paint_circle)" />
+        <path d="M22.2 1 8.8 14.6a9.5 9.5 0 0 0 0 13.4l13.4-13.4a9.6 9.6 0 0 0 0-13.6Z" fill="url(#paint_flame)" />
+        <defs>
+          <linearGradient id="paint_circle" x1="23.3" x2="8.9" y1="13.6" y2="28.3" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#FAB951" />
+            <stop offset="1" stop-color="#FF5F52" />
+          </linearGradient>
+          <linearGradient id="paint_flame" x1="15.5" x2="15.5" y1="1" y2="28" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#C62828" />
+            <stop offset="1" stop-color="#FF5F52" />
+          </linearGradient>
+        </defs>
+      </svg>
+      <div id="raw-text">loading...</div>
+    </div>
+  </div>
+</body>
+
+</html>

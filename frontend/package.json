@@ -1,0 +1,68 @@
+{
+  "name": "eth-burn",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@chakra-ui/react": "^1.6.12",
+    "@emotion/react": "^11.5.0",
+    "@emotion/styled": "^11.3.0",
+    "@ethersproject/abstract-provider": "^5.5.1",
+    "ethers": "^5.5.1",
+    "framer-motion": "^4",
+    "lru-cache": "^6.0.0",
+    "node-sass": "^6.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-ga": "^3.3.0",
+    "react-icons": "^4.3.1",
+    "react-router-dom": "^6.0.2",
+    "react-scripts": "^4.0.3",
+    "recharts": "^2.1.6"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.15.0",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/d3-scale": "^4.0.2",
+    "@types/d3-scale-chromatic": "^3.0.0",
+    "@types/jest": "^27.0.2",
+    "@types/lru-cache": "^5.1.1",
+    "@types/node": "^16.11.7",
+    "@types/react": "^17.0.34",
+    "@types/react-dom": "^17.0.11",
+    "@types/react-router-dom": "^5.3.2",
+    "http-proxy-middleware": "^2.0.1",
+    "request": "^2.88.2",
+    "typescript": "^4.4.4"
+  },
+  "funding": [
+    {
+      "type": "individual",
+      "url": "https://gitcoin.co/grants/1709/watchtheburncom"
+    }
+  ]
+}
