@@ -7,7 +7,7 @@
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
     "@ethersproject/abstract-provider": "^5.5.1",
-    "ethers": "^5.5.1",
+    "ethers": "^5.5.4",
     "framer-motion": "^4",
     "lru-cache": "^6.0.0",
     "node-sass": "^6.0.1",
