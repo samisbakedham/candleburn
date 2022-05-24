@@ -3,7 +3,7 @@ module github.com/mohamedmansour/ethereum-burn-stats/daemon
 go 1.16
 
 require (
-	github.com/ethereum/go-ethereum v1.10.6
+	github.com/ethereum/go-ethereum v1.10.17
 	github.com/gorilla/websocket v1.4.2
 	github.com/mattn/go-sqlite3 v1.14.8 // indirect
 	github.com/sirupsen/logrus v1.8.1
